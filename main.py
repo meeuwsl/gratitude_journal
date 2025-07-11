@@ -1,4 +1,5 @@
 import datetime
+import string
 
 # function for taking user entries
 def user_entries(user_input):
@@ -31,22 +32,74 @@ def search_through_date():
             
             if found == False: #if data is not found then
                 print("No data has been entered that day!","😕")
- 
 
-print("""********** WELCOME TO GRATITUDE JOURNAL **********
+#analyzing journal (most frequently used words)
+def analyze_journal():
+
+    with open("entries.txt","r",encoding="utf-8") as f:
+        data = f.readlines()
+        if data == []:
+            print("No entries yet, start journaling!🚀") 
+        else:
+            new_data = []
+            for i in data:
+                if "||" in i: #seperating the entry and timestamp
+                    new = i.split("||")
+                    new_data.append(new[1].strip().lower()) #new_data will only have the entry
+
+            #combining all the entries into one string 
+            count =  0
+            combined_entry = ""  
+            while count<len(new_data):
+                combined_entry += new_data[count]+" "
+                count = count+1
+    
+            #removing punctuations
+            for punct in string.punctuation:
+                combined_entry = combined_entry.replace(punct,"")
+
+            #splitting the string into words:
+            words = combined_entry.split(" ")
+
+            waste_words = ["the","a","for","of","in","at","every","being","to"]
+            filtered_words = [word for word in words if word not in waste_words]
+
+            #word count
+            word_freq = {}
+            for word in filtered_words:
+                if word in word_freq:
+                    word_freq[word] += 1
+                else:
+                    word_freq[word] = 1
+
+            if word_freq == {}:
+                print("Nothing to reflect as such, write more! You got this💗")
+            else:
+                #printing most occuring word
+                flag  = False
+                print("**********You are consistently grateful for-being: **********")
+                for word,count in word_freq.items():
+                    if(count>=3):
+                        print("🫶 ",word)
+                        flag = True
+                if(flag==False):
+                    print("Be grateful, write more, be consistent! Not written enough to draw a conclusion🥶")
+                
+print("""**********🙏 WELCOME TO GRATITUDE JOURNAL 🙏**********
 Type:
 1. To enter a new entry
 2. To view all the entries
 3. Search entries by date
-4. To exit
+4. Aanalyze journal
+5. To exit
 """)
 
 user_choice = int(input("Enter your choice: "))
 
-#ask for user choice until it says to exit(i.e types 4)
+#ask for user choice until it says to exit(i.e types 5)
 
-while user_choice != 4:
-    
+while user_choice != 5:
+
     if user_choice == 1:
         user_input = input("Enter whatever you are grateful for: ")
         user_entries(user_input) #call the function created to write the entry to the file
@@ -56,13 +109,16 @@ while user_choice != 4:
         entry = read_user_entries() #call the function created to read the entries 
 
         if entry == "":
-            print("No entries yet.")
+            print("No entries yet. Start writing..🖋️")
         else:
             print("***************🥰 I AM GRATEFUL FOR 🥰***************")
             print(entry)
 
     elif user_choice == 3: 
         search_through_date() #call the function created to filter the entries through date
+
+    elif user_choice == 4: 
+        analyze_journal() #call the function created to filter the entries through date
 
     user_choice = int(input("Enter your choice: "))
 
