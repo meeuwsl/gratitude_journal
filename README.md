@@ -8,11 +8,10 @@ A simple command-line journal to help you reflect on the positive moments in you
 
 - [x] Add a new gratitude entry
 - [x] View all past entries
-- [ ] Search entries by date
-- [ ] Word frequency / mood tracker
-- [ ] CLI menu navigation
-- [ ] OOP version with `Entry` and `Journal` classes
-- [ ] Streamlit Web App version (Bonus)
+- [x] Search entries by date
+- [x] Word frequency 
+- [x] CLI menu navigation
+- [x] Streak Tracking
 
 ---
 
@@ -38,9 +37,19 @@ File handling (open, read, write)
 This is part of my journey to learn Python through meaningful, real-life mini projects. Gratitude journaling not only improves mental clarity but also gives me a way to build something useful while learning how to work with files and timestamps in Python.
 
 📌 Project Status
--  Basic version complete
-- Actively improving
-- More features coming soon...
+## Project Status
+
+Gratitude Journal is now feature-complete for its first version!  
+All planned features have been implemented successfully, including:
+
+- Add a new gratitude entry
+- View all past entries
+- Search entries by date
+- View most commonly used gratitude words
+- Track daily journaling streaks
+- CLI menu navigation
+
+🛠️ Further improvements (like OOP version or web app) may be explored in future updates.
 
 📬 Connect with Me
 If you liked this project, feel free to connect or leave a ⭐ on the repo!

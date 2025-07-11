@@ -84,6 +84,50 @@ def analyze_journal():
                         flag = True
                 if(flag==False):
                     print("Be grateful, write more, be consistent! Not written enough to draw a conclusion🥶")
+
+def check_streak():
+
+    with open("entries.txt","r") as f:
+        #read the file
+        data = f.readlines()
+
+        #split the entry on the basis of " "
+        processed_entry = []
+        for entry in data:
+            processed_entry.append(entry.rsplit(" "))
+        
+        #append only the dates into the dates array
+        dates = []
+        for entry in processed_entry:
+            dates.append(entry[0]) 
+
+    #convert dates into set datatype to remove duplicates
+    filter_dates = set(dates)
+
+    #convert back into list
+    filter_dates = list(filter_dates)
+
+    #extracting the current date
+    today = datetime.datetime.now()
+    curr_date = today.strftime("%Y-%m-%d")
+    
+    converted_dates = [datetime.datetime.strptime(d, "%Y-%m-%d").date() for d in filter_dates]
+
+    converted_dates_set = set(converted_dates)
+    
+    current_day = datetime.date.today()
+    current_day -= datetime.timedelta(days=1)
+
+    streak = 0
+    current_day = datetime.date.today()
+    while current_day in converted_dates_set:
+        streak += 1
+        current_day -= datetime.timedelta(days=1)
+
+    print(f"🔥 You’re on a {streak}-day gratitude streak!")
+
+    if(streak==0):
+        print("Start jounaling daily to begin😉")
                 
 print("""**********🙏 WELCOME TO GRATITUDE JOURNAL 🙏**********
 Type:
@@ -91,14 +135,15 @@ Type:
 2. To view all the entries
 3. Search entries by date
 4. Aanalyze journal
-5. To exit
+5. Check streak🔥
+6. To exit
 """)
 
 user_choice = int(input("Enter your choice: "))
 
-#ask for user choice until it says to exit(i.e types 5)
+#ask for user choice until it says to exit(i.e types 6)
 
-while user_choice != 5:
+while user_choice != 6:
 
     if user_choice == 1:
         user_input = input("Enter whatever you are grateful for: ")
@@ -119,6 +164,9 @@ while user_choice != 5:
 
     elif user_choice == 4: 
         analyze_journal() #call the function created to filter the entries through date
+
+    elif user_choice == 5: 
+        check_streak() #call the function created to track your streak
 
     user_choice = int(input("Enter your choice: "))
 
