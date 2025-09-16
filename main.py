@@ -77,7 +77,7 @@ def analyze_journal():
             else:
                 #printing most occuring word
                 flag  = False
-                print("**********You are consistently grateful for-being: **********")
+                print("**********You are consistently grateful for being: **********")
                 for word,count in word_freq.items():
                     if(count>=3):
                         print("🫶 ",word)
@@ -127,14 +127,14 @@ def check_streak():
     print(f"🔥 You’re on a {streak}-day gratitude streak!")
 
     if(streak==0):
-        print("Start jounaling daily to begin😉")
+        print("Start journaling daily to begin😉")
                 
 print("""**********🙏 WELCOME TO GRATITUDE JOURNAL 🙏**********
 Type:
 1. To enter a new entry
 2. To view all the entries
 3. Search entries by date
-4. Aanalyze journal
+4. Analyze journal
 5. Check streak🔥
 6. To exit
 """)
@@ -171,4 +171,4 @@ while user_choice != 6:
     user_choice = int(input("Enter your choice: "))
 
 #once exited, print:
-print("Thankyou, Have a good day!🤍")  
+print("Thank you, Have a good day!🤍")  
