@@ -127,7 +127,7 @@ def check_streak():
     print(f"🔥 You’re on a {streak}-day gratitude streak!")
 
     if(streak==0):
-        print("Start jounaling daily to begin😉")
+        print("Start journaling daily to begin😉")
                 
 print("""**********🙏 WELCOME TO GRATITUDE JOURNAL 🙏**********
 Type:
