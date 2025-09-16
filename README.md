@@ -1,5 +1,7 @@
 # 📝 Gratitude Journal - Python CLI App
 
+> Test change: validating MCP-powered PR flow.
+
 A simple command-line journal to help you reflect on the positive moments in your day. This beginner-friendly Python project lets you write what you're grateful for and stores each entry with a timestamp in a text file.
 
 ---
