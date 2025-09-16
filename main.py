@@ -1,5 +1,6 @@
 import datetime
 import string
+import os
 
 # function for taking user entries
 def user_entries(user_input):
@@ -166,6 +167,14 @@ def delete_entry():
     with open("entries.txt","w",encoding="utf-8") as f:
         f.writelines(lines)
     print("Entry deleted successfully.")
+
+# ensure entries file exists on startup
+def ensure_entries_file():
+    if not os.path.exists("entries.txt"):
+        with open("entries.txt","w",encoding="utf-8") as f:
+            pass
+
+ensure_entries_file()
 
 print("""**********🙏 WELCOME TO GRATITUDE JOURNAL 🙏**********
 Type:
