@@ -129,6 +129,44 @@ def check_streak():
     if(streak==0):
         print("Start jounaling daily to begin😉")
                 
+def delete_entry():
+
+    try:
+        with open("entries.txt","r",encoding="utf-8") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        print("No entries yet. Start writing..🖋️")
+        return
+
+    if lines == []:
+        print("No entries to delete.")
+        return
+
+    print("***************🗑️ SELECT ENTRY TO DELETE 🗑️***************")
+    for idx, line in enumerate(lines, start=1):
+        print(f"{idx}. {line}", end="")
+
+    try:
+        choice = int(input("Enter the entry number to delete: "))
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return
+
+    if choice < 1 or choice > len(lines):
+        print("Invalid choice. No entry deleted.")
+        return
+
+    to_delete = lines[choice - 1].rstrip("\n")
+    confirm = input(f"Delete this entry? (y/N) => {to_delete}\n").strip().lower()
+    if confirm != 'y':
+        print("Deletion cancelled.")
+        return
+
+    del lines[choice - 1]
+    with open("entries.txt","w",encoding="utf-8") as f:
+        f.writelines(lines)
+    print("Entry deleted successfully.")
+
 print("""**********🙏 WELCOME TO GRATITUDE JOURNAL 🙏**********
 Type:
 1. To enter a new entry
@@ -137,6 +175,7 @@ Type:
 4. Aanalyze journal
 5. Check streak🔥
 6. To exit
+7. Delete an entry
 """)
 
 user_choice = int(input("Enter your choice: "))
@@ -167,6 +206,9 @@ while user_choice != 6:
 
     elif user_choice == 5: 
         check_streak() #call the function created to track your streak
+
+    elif user_choice == 7:
+        delete_entry()
 
     user_choice = int(input("Enter your choice: "))
 
